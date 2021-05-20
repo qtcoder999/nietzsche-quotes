@@ -7,9 +7,9 @@ export const HomePage = () => {
     return (
         <>
             <SnackbarProvider>
-                < AutoSizer disableWidth>
+                < AutoSizer style={{ width: "100%" }}>
                     {({ height, width }) => (
-                        <QuotesList width={width} height={height} />
+                        <QuotesList height={height} width={width} />
                     )}
                 </AutoSizer>
             </SnackbarProvider>

@@ -2,13 +2,13 @@ import { changeData, currentData, dataCollection, currentPhilosopher, resetData 
 
 export const scrollToFirstRow = (listRef) => {
     if (currentData.length > 0 && listRef.current) {
-        listRef.current.scrollToItem(0)
+        listRef.current.scrollToRow(0)
     }
 }
 
-export const scrollToRow = (listRef, scrollPosition) => {
+export const scrollToSpecificRow = (listRef, scrollPosition) => {
     if (currentData.length > 0 && listRef.current) {
-        listRef.current.scrollToItem(scrollPosition)
+        listRef.current.scrollToRow(scrollPosition)
     }
 };
 
@@ -17,7 +17,7 @@ export const scrollToMemorizedRow = (listRef) => {
         let scrollPosition = JSON.parse(localStorage.getItem(currentPhilosopher + '-scrollPosition'));
 
         if (typeof scrollPosition != undefined && scrollPosition && scrollPosition > 0) {
-            listRef.current.scrollToItem(scrollPosition - 1);
+            listRef.current.scrollToRow(scrollPosition - 1);
         }
     }
 

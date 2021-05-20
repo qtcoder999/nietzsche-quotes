@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { FixedSizeList as List } from "react-window";
+import { List } from "react-virtualized";
 import { Row } from "../row/row";
 
 import { changeData, currentData, currentPhilosopher, dataCollection, initializeData, setCurrentPhilosopher } from "../../utils/staticDataUtils";
@@ -10,7 +10,7 @@ import "./quotes-list.css"
 import Select from "../select/select";
 import { changeQuotesData, getPhilosopherFullName } from "./utils/utils";
 
-function QuotesList({ width, height }) {
+function QuotesList({ height, width }) {
     const listRef = useRef()
     const [searchText, setSearchText] = useState('');
     const [triggerChange, setTriggerChange] = useState(0);
@@ -90,17 +90,18 @@ function QuotesList({ width, height }) {
 
             { searchText !== "" ? <span>Search Results: {searchText}</span> : null}
 
-            { philosopherFullName !== undefined && <List
-                className="List"
-                height={height}
-                itemCount={currentData.length}
-                itemSize={600}
-                width={width}
-                ref={listRef}
-                itemData={{ searchText, triggerChange, philosopherFullName }}
-            >
-                {Row}
-            </List>}
+            { philosopherFullName !== undefined &&
+                <List
+                    className="List"
+                    height={height}
+                    width={width}
+                    rowHeight={600}
+                    rowCount={currentData.length}
+                    ref={listRef}
+                    itemData={{ searchText, triggerChange, philosopherFullName }}
+                    rowRenderer={Row}
+                />
+            }
         </>
     )
 }

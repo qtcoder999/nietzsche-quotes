@@ -9,7 +9,6 @@ export const changeQuotesData = (name) => {
     setCurrentPhilosopher(newName)
 
     changeData(dataCollection[newName])
-
 }
 
 export const cache = new CellMeasurerCache({
